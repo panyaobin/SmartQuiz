@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="quiz.question.mapper.QuizQuestionMapper">
+
+    <resultMap type="QuizQuestion" id="QuizQuestionResult">
+        <result property="id" column="id"/>
+        <result property="provinceId" column="province_id"/>
+        <result property="majorId" column="major_id"/>
+        <result property="subjectId" column="subject_id"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="entryType" column="entry_type"/>
+        <result property="stem" column="stem"/>
+        <result property="optionSize" column="option_size"/>
+        <result property="optionContent" column="option_content"/>
+        <result property="difficulty" column="difficulty"/>
+        <result property="answer" column="answer"/>
+        <result property="analysis" column="analysis"/>
+        <result property="year" column="year"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectQuizQuestionVo">
+        select id,
+               province_id,
+               major_id,
+               subject_id,
+               source_type,
+               entry_type,
+               stem,
+               option_size,
+               option_content,
+               difficulty,
+               answer,
+               analysis,
+               year,
+               parent_id,
+               del_flag,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from quiz_question
+    </sql>
+
+    <select id="selectQuizQuestionList" parameterType="QuizQuestion" resultMap="QuizQuestionResult">
+        <include refid="selectQuizQuestionVo"/>
+        <where>
+            <if test="provinceId != null ">and province_id = #{provinceId}</if>
+            <if test="majorId != null ">and major_id = #{majorId}</if>
+            <if test="subjectId != null ">and subject_id = #{subjectId}</if>
+            <if test="sourceType != null ">and source_type = #{sourceType}</if>
+            <if test="entryType != null ">and entry_type = #{entryType}</if>
+            <if test="stem != null  and stem != ''">and stem = #{stem}</if>
+            <if test="difficulty != null ">and difficulty = #{difficulty}</if>
+            <if test="year != null ">and year = #{year}</if>
+        </where>
+    </select>
+
+    <select id="selectQuizQuestionById" parameterType="Long" resultMap="QuizQuestionResult">
+        <include refid="selectQuizQuestionVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertQuizQuestion" parameterType="QuizQuestion">
+        insert into quiz_question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="provinceId != null">province_id,</if>
+            <if test="majorId != null">major_id,</if>
+            <if test="subjectId != null">subject_id,</if>
+            <if test="sourceType != null">source_type,</if>
+            <if test="entryType != null">entry_type,</if>
+            <if test="stem != null and stem != ''">stem,</if>
+            <if test="optionSize != null">option_size,</if>
+            <if test="optionContent != null">option_content,</if>
+            <if test="difficulty != null">difficulty,</if>
+            <if test="answer != null">answer,</if>
+            <if test="analysis != null">analysis,</if>
+            <if test="year != null">year,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="provinceId != null">#{provinceId},</if>
+            <if test="majorId != null">#{majorId},</if>
+            <if test="subjectId != null">#{subjectId},</if>
+            <if test="sourceType != null">#{sourceType},</if>
+            <if test="entryType != null">#{entryType},</if>
+            <if test="stem != null and stem != ''">#{stem},</if>
+            <if test="optionSize != null">#{optionSize},</if>
+            <if test="optionContent != null">#{optionContent},</if>
+            <if test="difficulty != null">#{difficulty},</if>
+            <if test="answer != null">#{answer},</if>
+            <if test="analysis != null">#{analysis},</if>
+            <if test="year != null">#{year},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateQuizQuestion" parameterType="QuizQuestion">
+        update quiz_question
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="provinceId != null">province_id = #{provinceId},</if>
+            <if test="majorId != null">major_id = #{majorId},</if>
+            <if test="subjectId != null">subject_id = #{subjectId},</if>
+            <if test="sourceType != null">source_type = #{sourceType},</if>
+            <if test="entryType != null">entry_type = #{entryType},</if>
+            <if test="stem != null and stem != ''">stem = #{stem},</if>
+            <if test="optionSize != null">option_size = #{optionSize},</if>
+            <if test="optionContent != null">option_content = #{optionContent},</if>
+            <if test="difficulty != null">difficulty = #{difficulty},</if>
+            <if test="answer != null">answer = #{answer},</if>
+            <if test="analysis != null">analysis = #{analysis},</if>
+            <if test="year != null">year = #{year},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteQuizQuestionById" parameterType="Long">
+        delete
+        from quiz_question
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteQuizQuestionByIds" parameterType="String">
+        delete from quiz_question where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--逻辑删除-->
+    <delete id="removeQuizQuestionByIds" parameterType="String">
+        update quiz_question set del_flag = '2' where id = in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
