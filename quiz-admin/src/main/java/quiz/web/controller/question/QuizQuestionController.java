@@ -14,6 +14,7 @@ import quiz.question.service.IQuizQuestionService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 题库试题Controller
@@ -56,7 +57,9 @@ public class QuizQuestionController extends BaseController {
     @PreAuthorize("@ss.hasPermi('quizquestion:quizquestion:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id) {
-        return success(quizQuestionService.selectQuizQuestionById(id));
+        QuizQuestion quizQuestion = quizQuestionService.selectQuizQuestionById(id);
+        Optional.ofNullable(quizQuestion).orElseThrow(() -> new RuntimeException("试题信息不存在,请核对"));
+        return success(quizQuestion);
     }
 
     /**
