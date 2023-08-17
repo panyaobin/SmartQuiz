@@ -93,4 +93,16 @@ public class QuizQuestionController extends BaseController {
     public AjaxResult remove(@PathVariable Long[] ids) {
         return toAjax(quizQuestionService.removeQuizQuestionByIds(ids));
     }
+
+
+    /**
+     * 物理删除题库试题
+     * @param ids 多个主键id
+     * @return 接口提示信息
+     */
+    @Log(title = "题库试题删除", businessType = BusinessType.DELETE)
+    @DeleteMapping("/delete/{ids}")
+    public AjaxResult del(@PathVariable Long[] ids) {
+        return toAjax(quizQuestionService.deleteQuizQuestionByIds(ids));
+    }
 }
