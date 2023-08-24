@@ -43,7 +43,7 @@ public interface IQuizQuestionService
      * @param quizQuestion 题库试题
      * @return 结果
      */
-    public int updateQuizQuestion(QuizQuestion quizQuestion);
+    int updateQuizQuestion(QuizQuestion quizQuestion);
 
     /**
      * 物理批量删除题库试题
@@ -51,7 +51,7 @@ public interface IQuizQuestionService
      * @param ids 需要删除的题库试题主键集合
      * @return 结果
      */
-    public int deleteQuizQuestionByIds(Long[] ids);
+    int deleteQuizQuestionByIds(Long[] ids);
 
     /**
      * 逻辑批量删除题库试题
@@ -59,7 +59,7 @@ public interface IQuizQuestionService
      * @param ids 需要删除的题库试题主键集合
      * @return 结果
      */
-    public int removeQuizQuestionByIds(Long[] ids);
+    int removeQuizQuestionByIds(Long[] ids);
 
     /**
      * 删除题库试题信息
@@ -67,5 +67,6 @@ public interface IQuizQuestionService
      * @param id 题库试题主键
      * @return 结果
      */
-    public int deleteQuizQuestionById(Long id);
+    int deleteQuizQuestionById(Long id);
+
 }
