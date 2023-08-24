@@ -42,3 +42,4 @@ export function delQuizquestion(id) {
     method: 'delete'
   })
 }
+
