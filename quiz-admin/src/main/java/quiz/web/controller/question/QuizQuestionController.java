@@ -105,4 +105,8 @@ public class QuizQuestionController extends BaseController {
     public AjaxResult del(@PathVariable Long[] ids) {
         return toAjax(quizQuestionService.deleteQuizQuestionByIds(ids));
     }
+
+    public AjaxResult test(String id) {
+        return toAjax(1);
+    }
 }
